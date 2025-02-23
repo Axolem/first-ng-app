@@ -1,9 +1,26 @@
-header{
+header {
   display: flex;
   padding-inline: 16px;
-  padding-block:8px;
+  padding-block: 8px;
   background-color: #333;
   color: white;
   align-items: center;
   justify-content: space-between;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+
+  ul {
+    display: flex;
+    list-style: none;
+  }
+}
+
+a {
+  color: white;
+  text-decoration: none;
 }
