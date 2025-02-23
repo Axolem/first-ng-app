@@ -1,11 +1,7 @@
-import {
-  Component,
-  inject,
-  OnInit,
-  signal,
-} from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { TodoService } from '../services/todo/todo.service';
 import { Todo } from '../model/todo/index.type';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-todo',
@@ -19,6 +15,14 @@ export class TodoComponent implements OnInit {
 
   // Runs on first mount only
   ngOnInit(): void {
-    this.todoItems.set(this.todoService.todoItems);
+    this.todoService
+      .getTodosFromApi()
+      .pipe(
+        catchError((error) => {
+          alert(error);
+          throw error;
+        })
+      )
+      .subscribe((todos) => this.todoItems.set(todos));
   }
 }
